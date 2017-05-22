@@ -24,7 +24,7 @@ y_test <- read.table(y_test_file)
 subject_test <- read.table(subject_test_file)
 
 ##################################################################
-# 1. Merges the training and the test sets to create one data set.
+1. Merges the training and the test sets to create one data set.
 ##################################################################
 
 training_dt <- cbind(cbind(x_train, subject_train), y_train)
@@ -35,20 +35,20 @@ sensor_labels <- rbind(rbind(features, c(562, "Subject")), c(563, "ActivityId"))
 names(sensor_dt) <- sensor_labels
 
 ############################################################################################
-# 2. Extracts only the measurements on the mean and standard deviation for each measurement.
+2. Extracts only the measurements on the mean and standard deviation for each measurement.
 ############################################################################################
 
 sensor_dt_mean_std <- sensor_dt[,grepl("mean|std|Subject|ActivityId", names(sensor_dt))]
 
 ###########################################################################
-# 3. Uses descriptive activity names to name the activities in the data set
+3. Uses descriptive activity names to name the activities in the data set
 ###########################################################################
 
 sensor_dt_mean_std1 <- join(sensor_dt_mean_std, activity_labels, by = "ActivityId", match = "first")
 sensor_dt_mean_std2 <- sensor_dt_mean_std1[,-1]
 
 ##############################################################
-# 4. Appropriately labels the data set with descriptive names.
+4. Appropriately labels the data set with descriptive names.
 ##############################################################
 
 names(sensor_dt_mean_std2) <- gsub('\\(|\\)',"",names(sensor_dt_mean_std2), perl = TRUE)
@@ -65,7 +65,7 @@ names(sensor_dt_mean_std2) <- gsub('Freq\\.',"Frequency.",names(sensor_dt_mean_s
 names(sensor_dt_mean_std2) <- gsub('Freq$',"Frequency",names(sensor_dt_mean_std2))
 
 ######################################################################################################################
-# 5. Creates a second, independent tidy data set with the average of each variable for each activity and each subject.
+5. Creates a second, independent tidy data set with the average of each variable for each activity and each subject.
 ######################################################################################################################
 
 sensor_mean = ddply(sensor_dt_mean_std2, c("Subject","Activity"), numcolwise(mean))
