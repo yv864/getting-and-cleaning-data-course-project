@@ -24,4 +24,4 @@
 Outputs
 ----------------
 1. Tidy dataset `sensor_mean_results.txt`
-2. Codebook `run_analysis.md`
+2. Codebook `run_analysis.R`
